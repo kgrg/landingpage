@@ -1,72 +1,74 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { MotionDiv } from "@/lib/motion"
 import { 
   Code2, 
   Smartphone, 
   Cloud, 
   Database, 
   Bot, 
-  Globe 
+  Shield,
+  Layers,
+  GitBranch
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const services = [
   {
-    icon: <Code2 className="h-10 w-10" />,
+    icon: <Code2 className="h-6 w-6" />,
     title: "Custom Software Development",
-    description: "Tailored solutions designed to meet your specific business needs and challenges.",
+    description: "Tailored enterprise solutions built with cutting-edge technologies to solve your unique business challenges.",
     color: "bg-blue-500/10 text-blue-500"
   },
   {
-    icon: <Smartphone className="h-10 w-10" />,
-    title: "Mobile App Development",
-    description: "Native and cross-platform mobile applications that deliver exceptional user experiences.",
-    color: "bg-green-500/10 text-green-500"
-  },
-  {
-    icon: <Cloud className="h-10 w-10" />,
-    title: "Cloud Solutions",
-    description: "Scalable cloud infrastructure and services that power your digital transformation.",
+    icon: <Cloud className="h-6 w-6" />,
+    title: "Cloud & DevOps",
+    description: "Modern cloud infrastructure and CI/CD pipelines that ensure scalability, security, and rapid deployment.",
     color: "bg-purple-500/10 text-purple-500"
   },
   {
-    icon: <Database className="h-10 w-10" />,
-    title: "Database Management",
-    description: "Robust database solutions ensuring data security, performance, and reliability.",
+    icon: <Smartphone className="h-6 w-6" />,
+    title: "Mobile Development",
+    description: "Native and cross-platform mobile applications that deliver exceptional user experiences across all devices.",
+    color: "bg-green-500/10 text-green-500"
+  },
+  {
+    icon: <Database className="h-6 w-6" />,
+    title: "Data Engineering",
+    description: "Robust data pipelines and analytics solutions to help you make data-driven decisions.",
     color: "bg-orange-500/10 text-orange-500"
   },
   {
-    icon: <Bot className="h-10 w-10" />,
+    icon: <Bot className="h-6 w-6" />,
     title: "AI & Machine Learning",
-    description: "Intelligent solutions that leverage cutting-edge AI and ML technologies.",
+    description: "Advanced AI solutions that automate processes and provide intelligent insights for your business.",
     color: "bg-pink-500/10 text-pink-500"
   },
   {
-    icon: <Globe className="h-10 w-10" />,
-    title: "Web Development",
-    description: "Modern web applications built with the latest technologies and best practices.",
+    icon: <Shield className="h-6 w-6" />,
+    title: "Cybersecurity",
+    description: "Comprehensive security solutions to protect your applications and infrastructure from threats.",
+    color: "bg-red-500/10 text-red-500"
+  },
+  {
+    icon: <Layers className="h-6 w-6" />,
+    title: "API Development",
+    description: "Scalable and secure APIs that enable seamless integration and extend your platform's capabilities.",
     color: "bg-cyan-500/10 text-cyan-500"
+  },
+  {
+    icon: <GitBranch className="h-6 w-6" />,
+    title: "Legacy Modernization",
+    description: "Transform legacy systems into modern, scalable applications using the latest technologies.",
+    color: "bg-amber-500/10 text-amber-500"
   }
 ]
 
-const fadeInVariants = {
-  initial: { opacity: 0, y: 20 },
-  animate: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.1 * index,
-      duration: 0.5
-    }
-  })
-}
-
 export default function Services() {
   return (
-    <section id="services" className="py-20 bg-background">
+    <section id="services" className="py-20 bg-secondary/50">
       <div className="container px-4 mx-auto">
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -74,32 +76,30 @@ export default function Services() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Our Services
+            Comprehensive Software Solutions
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            We offer a comprehensive range of software development services
+            From concept to deployment, we provide end-to-end software development services
             to help your business thrive in the digital age.
           </p>
-        </motion.div>
+        </MotionDiv>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
-            <motion.div
+            <MotionDiv
               key={service.title}
-              custom={index}
-              initial="initial"
-              whileInView="animate"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              variants={fadeInVariants}
-              className="group relative overflow-hidden rounded-lg border bg-background p-8 hover:shadow-lg transition-shadow"
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group relative overflow-hidden rounded-lg border bg-background p-6 hover:shadow-lg transition-all"
             >
-              <div className={cn("absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity", service.color.split(' ')[0] + "/5")} />
-              <div className={cn("relative rounded-full w-16 h-16 flex items-center justify-center mb-4", service.color)}>
+              <div className={cn("relative rounded-full w-12 h-12 flex items-center justify-center mb-4", service.color)}>
                 {service.icon}
               </div>
               <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
               <p className="text-muted-foreground">{service.description}</p>
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
       </div>
