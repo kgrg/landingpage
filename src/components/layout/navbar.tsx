@@ -1,30 +1,49 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { MotionNav, MotionDiv } from "@/lib/motion"
+import { MotionNav } from "@/lib/motion"
 import { Menu, X } from "lucide-react"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
+
+const navItems = [
+  { name: "Work", href: "#work" },
+  { name: "Services", href: "#services" },
+  { name: "Solutions", href: "#solutions" },
+  { name: "Process", href: "#process" },
+  { name: "Testimonials", href: "#testimonials" },
+] as const
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState("")
 
+  // Handle scroll behavior
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
+
+      // Update active section
+      const sections = navItems.map(item => item.href.slice(1))
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          return rect.top <= 100 && rect.bottom >= 100
+        }
+        return false
+      })
+
+      if (currentSection) {
+        setActiveSection(currentSection)
+      }
     }
+
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const navItems = [
-    { name: "Services", href: "#services" },
-    { name: "Process", href: "#process" },
-    { name: "Testimonials", href: "#testimonials" },
-    { name: "Pricing", href: "#pricing" },
-  ]
-
+  // Smooth scroll to section
   const handleNavClick = (href: string) => {
     setIsOpen(false)
     const element = document.querySelector(href)
@@ -40,30 +59,6 @@ const Navbar = () => {
     }
   }
 
-  // Add active section tracking
-  const [activeSection, setActiveSection] = useState("")
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["services", "process", "testimonials", "pricing"]
-      const scrollPosition = window.scrollY + 100 // offset for better detection
-
-      for (const section of sections) {
-        const element = document.getElementById(section)
-        if (element) {
-          const { top, bottom } = element.getBoundingClientRect()
-          if (top <= 100 && bottom >= 100) {
-            setActiveSection(section)
-            break
-          }
-        }
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
   return (
     <MotionNav
       initial={{ y: -100 }}
@@ -74,9 +69,9 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="font-bold text-xl text-primary">
+          <a href="#" className="font-bold text-xl text-primary">
             DevCraft
-          </Link>
+          </a>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-1">
@@ -85,7 +80,7 @@ const Navbar = () => {
                 key={item.name}
                 onClick={() => handleNavClick(item.href)}
                 className={`px-3 py-2 text-sm font-medium transition-colors rounded-md cursor-pointer
-                  ${activeSection === item.href.slice(1) 
+                  ${activeSection === item.href.slice(1)
                     ? "text-primary bg-primary/10" 
                     : "hover:text-primary"
                   }`}
@@ -118,12 +113,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <MotionDiv
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-16 left-0 right-0 bg-background border-b shadow-lg"
-          >
+          <div className="md:hidden absolute top-16 left-0 right-0 bg-background border-b shadow-lg">
             <div className="px-4 py-2 space-y-1">
               {navItems.map((item) => (
                 <button
@@ -150,7 +140,7 @@ const Navbar = () => {
                 </Button>
               </div>
             </div>
-          </MotionDiv>
+          </div>
         )}
       </div>
     </MotionNav>

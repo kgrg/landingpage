@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import Hero from "@/components/sections/hero"
+import { OurWork } from "@/components/sections/our-work"
 
 // Dynamically import heavy components
 const Services = dynamic(() => import("@/components/sections/services"), {
@@ -28,6 +29,7 @@ export default function Home() {
       <Hero />
       <Services />
       <Solutions />
+      <OurWork />
       <Process />
       <Testimonials />
       <Pricing />
