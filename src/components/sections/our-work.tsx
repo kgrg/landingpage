@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { MotionDiv } from "@/lib/motion"
-import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Github, Globe } from "lucide-react"

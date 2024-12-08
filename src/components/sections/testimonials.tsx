@@ -43,7 +43,7 @@ export default function Testimonials() {
             Trusted by Industry Leaders
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            See how we've helped companies transform their businesses through innovative software solutions.
+            See how we&apos;ve helped companies transform their businesses through innovative software solutions.
           </p>
         </MotionDiv>
 
@@ -78,7 +78,7 @@ export default function Testimonials() {
               </div>
 
               <blockquote className="text-muted-foreground">
-                "{testimonial.content}"
+                &quot;{testimonial.content}&quot;
               </blockquote>
             </MotionDiv>
           ))}
