@@ -25,7 +25,7 @@ const projects: Project[] = [
     id: "1",
     title: "E-Commerce Platform",
     description: "Full-stack e-commerce solution with real-time inventory management",
-    image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80",
+    image: "/our-work/photo-1472851294608-062f824d29cc.png",
     category: "web",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
     liveUrl: "https://example.com",
@@ -36,7 +36,7 @@ const projects: Project[] = [
     id: "2",
     title: "Mobile Banking App",
     description: "Secure mobile banking application with biometric authentication",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80",
+    image: "/our-work/photo-1563013544-824ae1b704d3.png",
     category: "mobile",
     technologies: ["React Native", "Node.js", "MongoDB"],
     color: "green"
@@ -45,7 +45,7 @@ const projects: Project[] = [
     id: "3",
     title: "Desktop Analytics Tool",
     description: "Real-time data analytics and visualization desktop application",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80",
+    image: "/our-work/photo-1551288049-bebda4e38f71.png",
     category: "desktop",
     technologies: ["Electron", "React", "D3.js"],
     githubUrl: "https://github.com",
@@ -55,7 +55,7 @@ const projects: Project[] = [
     id: "4",
     title: "Healthcare Platform",
     description: "Telemedicine and patient management system",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80",
+    image: "/our-work/photo-1576091160550-2173dba999ef.png",
     category: "web",
     technologies: ["React", "Node.js", "PostgreSQL"],
     color: "blue"
@@ -64,7 +64,7 @@ const projects: Project[] = [
     id: "5",
     title: "Delivery App",
     description: "Real-time delivery tracking and management application",
-    image: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&q=80",
+    image: "/our-work/photo-1526628953301-3e589a6a8b74.png",
     category: "mobile",
     technologies: ["Flutter", "Firebase", "Google Maps"],
     color: "green"
@@ -73,7 +73,7 @@ const projects: Project[] = [
     id: "6",
     title: "AI Video Editor",
     description: "Desktop video editing software with AI capabilities",
-    image: "https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&q=80",
+    image: "/our-work/photo-1536240478700-b869070f9279.png",
     category: "desktop",
     technologies: ["Python", "TensorFlow", "Qt"],
     color: "purple"
@@ -150,7 +150,7 @@ export function OurWork() {
                     loading={index >= 3 ? "lazy" : undefined}
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.src = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80";
+                      target.src = "/our-work/photo-1618005182384-a83a8bd57fbe.png";
                     }}
                   />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">

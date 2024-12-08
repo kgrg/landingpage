@@ -10,7 +10,7 @@ export const HeroBackground = () => {
       
       {/* Background image */}
       <Image
-        src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&q=80"
+        src="/hero/photo-1581090700227-1e37b190418e.png"
         alt="Digital background"
         fill
         priority
